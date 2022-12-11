@@ -12,7 +12,7 @@ void UMyGameInstance::Init() {
 		FModuleManager::Get().LoadModule("WebSockets");
 	}
 	jsonstring = "";
-	WebSocket = FWebSocketsModule::Get().CreateWebSocket("wss://0hqif30xkl.execute-api.us-west-2.amazonaws.com/production");
+	WebSocket = FWebSocketsModule::Get().CreateWebSocket("<YOUR WEBSOCKET URL>");
 
 	WebSocket->OnConnected().AddLambda([]()
 	{
