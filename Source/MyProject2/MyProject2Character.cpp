@@ -73,6 +73,20 @@ void AMyProject2Character::NotifyServer()
 		}
 	}
 }
+void AMyProject2Character::NotifyServer1()
+{
+	UMyGameInstance* GameInstance = Cast<UMyGameInstance>(GetGameInstance());
+	//spawnactor = Cast<AMyActor1>(UGameplayStatics::GetActorOfClass(GetWorld(), Actortospawn));
+	if (GameInstance)
+	{
+		if (GameInstance->WebSocket->IsConnected())
+		{
+			FString msg = "{\"action\":\"systemon\",\"MACID\":\"18:c0:4d:5b:f7:ac\",\"power\":\"on\"}";
+			UE_LOG(LogTemp, Warning, TEXT("%s"),*msg);
+			GameInstance->WebSocket->Send(msg);
+		}
+	}
+}
 void AMyProject2Character::OnOverlapBegin(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (OtherActor && (OtherActor != this) && OtherComp)
@@ -120,7 +134,8 @@ void AMyProject2Character::SetupPlayerInputComponent(class UInputComponent* Play
 	// VR headset functionality
 	PlayerInputComponent->BindAction("ResetVR", IE_Pressed, this, &AMyProject2Character::OnResetVR);
 
-	PlayerInputComponent->BindAction("NotifyServer", IE_Pressed, this, &AMyProject2Character::NotifyServer);
+	PlayerInputComponent->BindAction("PowerOFF", IE_Pressed, this, &AMyProject2Character::NotifyServer);
+	PlayerInputComponent->BindAction("PowerON", IE_Pressed, this, &AMyProject2Character::NotifyServer1);
 }
 
 

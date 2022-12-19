@@ -104,7 +104,7 @@ void AMyActor::Tick(float DeltaTime)
 					/*mouse->SetMaterial(0, material);
 					keyboard->SetMaterial(0, material1);*/
 
-					if (MyJson->GetStringField("Keyboard") !="") {
+					if (MyJson->GetStringField("Keyboard") != "") {
 
 						//UE_LOG(LogTemp, Warning, TEXT("key: %f"), GameInstance->key);
 						material1->SetVectorParameterValue(FName(TEXT("color")), FLinearColor(0.0f, 1.0f, 0.0f));

@@ -74,6 +74,7 @@ protected:
 		void OnOverlapEnd(class UPrimitiveComponent* OverlappedComp, class AActor* OtherActor, class UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	void NotifyServer();
+	void NotifyServer1();
 
 protected:
 	// APawn interface

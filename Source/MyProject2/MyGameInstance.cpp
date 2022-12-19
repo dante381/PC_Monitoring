@@ -12,7 +12,7 @@ void UMyGameInstance::Init() {
 		FModuleManager::Get().LoadModule("WebSockets");
 	}
 	jsonstring = "";
-	WebSocket = FWebSocketsModule::Get().CreateWebSocket("<YOUR WEBSOCKET URL>");
+	WebSocket = FWebSocketsModule::Get().CreateWebSocket("wss://0hqif30xkl.execute-api.us-west-2.amazonaws.com/production");
 
 	WebSocket->OnConnected().AddLambda([]()
 	{
@@ -32,6 +32,7 @@ void UMyGameInstance::Init() {
 	WebSocket->OnMessage().AddLambda([&](const FString& MessageString)
 	{
 		jsonstring = MessageString;
+		UE_LOG(LogTemp, Warning, TEXT("%s"), *MessageString);
 		//An FString containing a serialized JSON string
 		//TSharedPtr<FJsonObject> MyJson = MakeShareable(new FJsonObject);
 		//TSharedRef<TJsonReader<>> Reader = TJsonReaderFactory<>::Create(MessageString);
